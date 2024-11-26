@@ -76,41 +76,92 @@ def chat(userInput):
 # Streamlit interface with custom layout
 def main():
     st.markdown("""
-        <style>
-            .chat-container {
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-end;
-                height: 80vh; /* 80% of the screen height for the chat */
-                overflow-y: auto;
+    <style>
+        /* Overall Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Light gray background for the entire page */
+        }
+
+        /* Header Styling */
+        .header {
+            background: linear-gradient(to right, #007BFF, #00C6FF); /* Blue gradient */
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Chat Container */
+        .chat-container {
+            background-color: white;
+            padding: 20px;
+            height: 70vh; /* Fixed height for scrollable chat */
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        /* User Messages */
+        .user-message {
+            background-color: #d1fae5; /* Light green background */
+            color: #065f46; /* Dark green text */
+            padding: 10px;
+            margin-bottom: 10px;
+            max-width: 70%;
+            border-radius: 10px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        /* Assistant Messages */
+        .assistant-message {
+            background-color: #ebf4ff; /* Light blue background */
+            color: #1e40af; /* Dark blue text */
+            padding: 10px;
+            margin-bottom: 10px;
+            max-width: 70%;
+            border-radius: 10px;
+            text-align: left;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        /* Input Box Styling */
+        .chatbox {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%; /* Dynamically adapt to screen size */
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 30px;
+            padding: 10px 20px;
+            box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .chatbox:focus-within {
+            border-color: #007BFF; /* Highlight border on focus */
+        }
+
+        /* Fade-In Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
             }
-            .user-message {
-                color: blue;
-                text-align: left;
-                margin-bottom: 10px;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-            .assistant-message {
-                color: green;
-                text-align: right;
-                margin-bottom: 10px;
-            }
-            .chatbox {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                padding: 10px;
-                box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            }
-            .header {
-                text-align: center;
-                margin-top: 20px;
-                font-size: 24px;
-                font-weight: bold;
-            }
-        </style>
-    """, unsafe_allow_html=True)
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 
     # Title at the top
     st.markdown('<div class="header">Bupa Climate-Related Health Risk Chatbot</div>', unsafe_allow_html=True)
